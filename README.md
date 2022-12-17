@@ -3,21 +3,17 @@
 
 git init
 
-git add README.md
-
-git commit -m "first commit"
-
 git branch -M main
 
 git remote add origin https://github.com/Jrea888/vue3-ts-cms.git
 
-git push -u origin main
+git push origin main
 
-git remote add origin https://github.com/Jrea888/vue3-ts-cms.git
+git pull origin main --rebase
 
-git branch -M main
+git rebase --continue
 
-git push -u origin main
+git push origin main
 
 ## Project setup
 
