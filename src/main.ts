@@ -6,6 +6,9 @@ import { registerElement } from './global'
 
 const app = createApp(App)
 
+console.log(process.env.VUE_APP_BASE_URL)
+console.log(process.env.VUE_APP_BASE_NAME)
+
 app.use(registerElement)
 app.use(router)
 app.use(store)
