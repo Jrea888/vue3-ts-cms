@@ -1,15 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
 import store from './store'
-import { registerElement } from './global'
+import router from './router'
+import { register } from './global'
+
+import 'normalize.css'
+import './assets/style/index.less'
 
 const app = createApp(App)
 
-console.log(process.env.VUE_APP_BASE_URL)
-console.log(process.env.VUE_APP_BASE_NAME)
-
-app.use(registerElement)
+app.use(register)
 app.use(router)
 app.use(store)
 
