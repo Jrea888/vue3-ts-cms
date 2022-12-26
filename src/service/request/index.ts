@@ -29,10 +29,7 @@ class Service {
     // 所有实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有实例都有的拦截器：请求成功拦截')
-        console.log(this.isShowLoading)
         if (this.isShowLoading) {
-          console.log('执行')
           this.loading = ElLoading.service({
             lock: true,
             text: 'Loading',
@@ -42,7 +39,6 @@ class Service {
         return config
       },
       (error) => {
-        console.log('所有实例都有的拦截器：请求失败拦截')
         this.loading.close()
         return error
       }
@@ -51,11 +47,9 @@ class Service {
       (res) => {
         this.loading.close()
 
-        console.log('所有实例都有的拦截器：响应成功拦截')
         return res.data
       },
       (error) => {
-        console.log('所有实例都有的拦截器：响应失败拦截')
         this.loading.close()
         return error
       }

@@ -19,11 +19,14 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
 import { ElForm } from 'element-plus'
+import localCache from '@/utils/cache'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   computed: {},
   components: {},
   setup() {
+    const store = useStore()
     const loginFormRef = ref<InstanceType<typeof ElForm>>()
     const rules = {
       name: [
@@ -38,20 +41,30 @@ export default defineComponent({
         { required: true, message: '密码不能为空~', trigger: 'blur' },
         {
           pattern: /^[a-z0-9]{6,}$/,
-          message: '密码必须是3位以上的字母或者数字~',
+          message: '密码必须是6位以上的字母或者数字~',
           trigger: 'blur'
         }
       ]
     }
     const loginInfo = reactive({
-      name: '',
-      password: ''
+      name: localCache.getCache('username') ?? '',
+      password: localCache.getCache('password') ?? ''
     })
 
-    const formValidate = () => {
+    const formValidate = (isRememberPass: boolean) => {
       loginFormRef.value?.validate((valid) => {
         if (valid) {
-          console.log('验证通过')
+          // 1. 判断是否需要记住密码
+          if (isRememberPass) {
+            localCache.setCache('username', loginInfo.name)
+            localCache.setCache('password', loginInfo.password)
+          } else {
+            localCache.deleteCache('username')
+            localCache.deleteCache('password')
+          }
+
+          // 2.开始登录验证
+          store.dispatch('login/accountLogin', { ...loginInfo })
         }
       })
     }

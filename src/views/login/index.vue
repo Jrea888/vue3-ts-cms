@@ -2,9 +2,8 @@
   <div class="login">
     <h1>后台管理系统</h1>
     <div class="content">
-      <!-- 切换 -->
-      <el-tabs type="border-card" stretch>
-        <el-tab-pane>
+      <el-tabs type="border-card" stretch v-model="currentTab">
+        <el-tab-pane name="account">
           <template #label>
             <el-icon :size="14" class="md"><UserFilled /></el-icon>
             <span class="space md">账号登录</span>
@@ -12,7 +11,7 @@
 
           <LoginAccount ref="loginAccountRef" />
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane name="phone">
           <template #label>
             <el-icon :size="14" class="md"><Iphone /></el-icon>
             <span class="space md">手机登录</span>
@@ -53,18 +52,30 @@ import LoginPhone from './login-phone.vue'
 export default defineComponent({
   components: { LoginAccount, LoginPhone },
   setup() {
+    const currentTab = ref('account')
     const isRememberPass = ref(true)
     const loginAccountRef = ref<InstanceType<typeof LoginAccount>>()
 
     const loginHandle = () => {
-      loginAccountRef.value?.formValidate()
+      if (currentTab.value === 'account') {
+        loginAccountRef.value?.formValidate(isRememberPass.value)
+      }
+      if (currentTab.value === 'phone') {
+        console.log('手机验证登录')
+      }
     }
 
     const checkBoxChange = (visible: boolean) => {
-      console.log(visible)
+      isRememberPass.value = visible
     }
 
-    return { isRememberPass, loginHandle, checkBoxChange, loginAccountRef }
+    return {
+      currentTab,
+      isRememberPass,
+      loginAccountRef,
+      loginHandle,
+      checkBoxChange
+    }
   }
 })
 </script>
