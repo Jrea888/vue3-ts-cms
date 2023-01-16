@@ -8,7 +8,16 @@ import {
   ElForm,
   ElFormItem,
   ElInput,
-  ElIcon
+  ElIcon,
+  ElContainer,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElCollapseTransition
 } from 'element-plus'
 
 const components = [
@@ -19,7 +28,16 @@ const components = [
   ElForm,
   ElFormItem,
   ElInput,
-  ElIcon
+  ElIcon,
+  ElContainer,
+  ElAside,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElCollapseTransition
 ]
 
 export default function (app: App): void {

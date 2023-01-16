@@ -73,8 +73,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped lang="less">
-.login-account {
-}
-</style>
