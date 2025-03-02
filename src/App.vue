@@ -1,21 +1,21 @@
 <template>
-  <div class="app">
-    <router-view></router-view>
-  </div>
+    <div class="app">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 
 export default defineComponent({
-  name: 'App',
-  components: {}
+    name: 'App',
+    components: {}
 })
 </script>
 
 <style scoped lang="less">
 .app {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 </style>

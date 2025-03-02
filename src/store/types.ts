@@ -1,10 +1,11 @@
-import { LoginState } from './login/types'
+import {LoginState} from './login/types'
 
 export interface RootState {
-  count: number
+    count: number
 }
 
 export interface IRootInfo {
-  login: LoginState
+    login: LoginState
 }
+
 export type IStoreType = IRootInfo & RootState
