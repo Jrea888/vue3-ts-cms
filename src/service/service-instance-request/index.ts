@@ -7,14 +7,14 @@ import {BASE_URL, TIME_OUT} from '../service-base-request/config'
 export const serviceRequest = new ServiceRequest({
     baseURL: BASE_URL,
     timeout: TIME_OUT,
+    // 配置每个实例的 请求拦截和响应拦截器
     interceptors: {
-        // 具体的全局请求拦截
         requestInterceptors: config => {
-            // 携带token
-            const token = localCache.getCache('token')
-            if (token && config.headers) {
-                config.headers.Authorization = `Bearer ${token}`
-            }
+            //  携带token：通过全局拦截器去携带配置
+            // const token = localCache.getCache('token')
+            // if (token && config.headers) {
+            //     config.headers.Authorization = `Bearer ${token}`
+            // }
             return config
         },
         requestInterceptorsCatch: (error: any) => {

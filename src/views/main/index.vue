@@ -1,5 +1,6 @@
 <template>
     <div class="main-view">
+        <h1>主页</h1>
         <el-container class="main-content">
             <el-aside :width="isCollapse ? '60px' : '210px'">
                 <LeftMenu :collapse="isCollapse" />

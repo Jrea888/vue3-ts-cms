@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {ElLoading} from 'element-plus'
+import {ElLoading} from 'element-plus/lib'
 import type {AxiosInstance} from 'axios'
 import type {ServiceInterceptors, RequestConfig} from './type'
 import localCache from '@/utils/cache'
@@ -21,7 +21,7 @@ class ServiceRequest {
         this.interceptors = config.interceptors
         this.isShowLoading = config.showLoading ?? DEFAULT_LOADING
 
-        // 拦截所有实例的请求 和 响应
+        // 对实例的请求和响应拦截器进行处理
         this.instance.interceptors.request.use(
             this.interceptors?.requestInterceptors,
             this.interceptors?.requestInterceptorsCatch
@@ -31,10 +31,9 @@ class ServiceRequest {
             this.interceptors?.responseInterceptorsCatch
         )
 
-        // 拦截axios实例中的请求
+        // 拦截axios实例中的请求，全局的请求拦截和响应拦截器
         this.instance.interceptors.request.use(
             config => {
-                // 携带token
                 const token = localCache.getCache('token')
                 if (token && config.headers) {
                     config.headers.Authorization = `Bearer ${token}`
@@ -68,7 +67,7 @@ class ServiceRequest {
     // 定义通用的请求方式，给每一个请求也配置拦截器
     private request<T>(config: RequestConfig<T>): Promise<T> {
         return new Promise((resolve, reject) => {
-            // 单个请求对请求config的处理
+            // 对单个请求进行拦截
             if (config.interceptors?.requestInterceptors) {
                 config = config.interceptors?.requestInterceptors(config)
             }
@@ -81,7 +80,7 @@ class ServiceRequest {
             this.instance
                 .request<any, T>(config)
                 .then(data => {
-                    // 配置了相应拦截器，就对响应数据进行处理
+                    // 对单个响应进行拦截，就对响应数据进行处理
                     if (config.interceptors?.responseInterceptors) {
                         data = config.interceptors.responseInterceptors(data)
                     }

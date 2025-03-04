@@ -17,7 +17,7 @@ import {
     ElMenuItem,
     ElMenuItemGroup,
     ElCollapseTransition
-} from 'element-plus'
+} from 'element-plus/lib'
 import 'element-plus/theme-chalk/index.css'
 
 const components = [
