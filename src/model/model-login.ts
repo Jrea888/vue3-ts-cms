@@ -34,7 +34,7 @@ export interface UserInfo {
     updateAt: string
 }
 
-export interface childrenInfo {
+export interface ChildrenInfo {
     children: Array<{
         id: number
         name: string
@@ -53,11 +53,14 @@ export interface childrenInfo {
 }
 
 export interface UserMenusInfo {
-    children: Array<childrenInfo>
+    children: Array<ChildrenInfo>
     icon: string
     id: number
     name: string
     sort: number
     type: number
-    url: string
+    url: string | null
+
+    permission: string
+    parentId: number
 }

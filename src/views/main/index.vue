@@ -1,6 +1,5 @@
 <template>
     <div class="main-view">
-        <h1>主页</h1>
         <el-container class="main-content">
             <el-aside :width="isCollapse ? '60px' : '210px'">
                 <LeftMenu :collapse="isCollapse" />
@@ -9,7 +8,9 @@
                 <el-header class="page-header">
                     <TopHeader @expandChange="expandChangeHandle" />
                 </el-header>
-                <el-main class="page-content">Main</el-main>
+                <el-main class="page-content">
+                    <router-view></router-view>
+                </el-main>
             </el-container>
         </el-container>
     </div>
@@ -41,16 +42,32 @@ export default defineComponent({
 
     .main-content {
         height: 100%;
+
+        .el-aside {
+            overflow-x: hidden;
+            overflow-y: auto;
+            line-height: 200px;
+            text-align: left;
+            cursor: pointer;
+            background-color: #001529;
+            transition: width 0.3s linear;
+            scrollbar-width: none; /* firefox */
+            -ms-overflow-style: none; /* IE 10+ */
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
     }
 
     .page-header {
         display: flex;
         align-items: center;
-        height: 48px;
+        height: 52px;
     }
 
     .page-content {
-        height: calc(100% - 48px);
+        height: calc(100% - 52px);
     }
 
     .el-main {

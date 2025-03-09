@@ -17,6 +17,7 @@
         // es模块化语法 和 commonjs 混合使用
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
         // 是否生成映射文件
         "sourceMap": true,
         // 文件路径在解析时 基本的URL，例如在项目中引用一个文件，一般是基于当前文件的路径
@@ -29,7 +30,8 @@
             "components/": ["src/components/*"]
         },
         // 可以再项目中指定要使用库的类型
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+        "forceConsistentCasingInFileNames": true // 减少在不同操作系统（如 Windows 和 macOS/Linux）之间工作时因文件名大小写不一致而引发的问题。
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
     "exclude": ["node_modules"]

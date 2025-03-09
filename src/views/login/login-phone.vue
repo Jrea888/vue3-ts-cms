@@ -2,11 +2,11 @@
     <div class="login-phone">
         <el-form :model="infoPhone" ref="phoneFormRef" label-width="60px">
             <el-form-item label="手机号" prop="phone">
-                <el-input v-model="infoPhone.phone" />
+                <el-input v-model="infoPhone.phone" placeholder="请输入手机号" />
             </el-form-item>
             <el-form-item label="验证码" prop="code">
                 <div class="bottom">
-                    <el-input v-model="infoPhone.code" />
+                    <el-input v-model="infoPhone.code" placeholder="请输入" />
                     <el-button type="primary" class="code-btn">获取验证码</el-button>
                 </div>
             </el-form-item>

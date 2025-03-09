@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     outputDir: './build',
-    publicPath: './', // 修改打包资源路径，部署到服务器时，不需要修改为相对路径
+    // publicPath: './', // 修改打包资源路径，部署到服务器时，不需要修改为相对路径
     devServer: {
         proxy: {
             '/api': {
@@ -16,18 +16,19 @@ module.exports = {
         }
     },
     // 配置方式一：通过chainWebpack自定义配置
-    // chainWebpack: config => {
-    //     config.resolve.alias.set('@', path.resolve(__dirname, 'src')).set('@components', '@/components')
-    // }
-    // 配置方式二：通过configureWebpack自定义配置
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@': path.resolve(__dirname, 'src'),
-                '@components': '@/components'
-            }
-        }
+    chainWebpack: config => {
+        config.resolve.alias.set('@', path.resolve(__dirname, 'src')).set('@components', '@/components')
     }
+
+    // 配置方式二：通过configureWebpack自定义配置
+    // configureWebpack: {
+    //     resolve: {
+    //         alias: {
+    //             '@': path.resolve(__dirname, 'src'),
+    //             '@components': '@/components'
+    //         }
+    //     },
+    // }
     // 配置方式三：通过configureWebpack自定义配置
     // configureWebpack: config => {
     //     config.resolve.alias = {

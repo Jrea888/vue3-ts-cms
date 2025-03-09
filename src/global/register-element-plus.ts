@@ -16,7 +16,13 @@ import {
     ElSubMenu,
     ElMenuItem,
     ElMenuItemGroup,
-    ElCollapseTransition
+    ElCollapseTransition,
+    ElBreadcrumb,
+    ElBreadcrumbItem,
+    ElAvatar,
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem
 } from 'element-plus/lib'
 import 'element-plus/theme-chalk/index.css'
 
@@ -37,7 +43,13 @@ const components = [
     ElSubMenu,
     ElMenuItem,
     ElMenuItemGroup,
-    ElCollapseTransition
+    ElCollapseTransition,
+    ElBreadcrumb,
+    ElBreadcrumbItem,
+    ElAvatar,
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem
 ]
 
 export default function (app: App): void {

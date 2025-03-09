@@ -2,10 +2,10 @@
     <div class="login-account">
         <el-form :rules="rules" :model="loginInfo" ref="loginFormRef" label-width="60px">
             <el-form-item label="账号" prop="name">
-                <el-input v-model="loginInfo.name" />
+                <el-input v-model="loginInfo.name" placeholder="请输入账号" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input v-model="loginInfo.password" show-password />
+                <el-input v-model="loginInfo.password" show-password placeholder="请输入密码" />
             </el-form-item>
         </el-form>
     </div>

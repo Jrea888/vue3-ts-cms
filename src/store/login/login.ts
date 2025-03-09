@@ -3,6 +3,7 @@ import router from '@/router'
 import {LoginParams, UserInfo, UserMenusInfo} from '@/model'
 import {serviceLogin} from '@/service'
 import localCache from '@/utils/cache'
+import {mapMenusToRoutes} from '@/utils/map-menus'
 import {RootState} from '../types'
 import {LoginState} from './types'
 
@@ -36,15 +37,7 @@ const state: LoginState = {
         },
         updateAt: ''
     },
-    userMenus: {
-        children: [],
-        icon: '',
-        id: 0,
-        name: '',
-        sort: 0,
-        type: 0,
-        url: ''
-    }
+    userMenus: []
 }
 
 const mutations: MutationTree<LoginState> = {
@@ -54,8 +47,17 @@ const mutations: MutationTree<LoginState> = {
     [SET_USER_INFO](state: LoginState, userInfo: UserInfo) {
         state.userInfo = userInfo
     },
-    [SET_USER_MENUS](state: LoginState, userMenus: UserMenusInfo) {
+    [SET_USER_MENUS](state: LoginState, userMenus: Array<UserMenusInfo>) {
         state.userMenus = userMenus
+        console.log('注册动态路由~')
+        // 1.将userMenus映射到routes中
+        const routers = mapMenusToRoutes(userMenus)
+        console.log(routers, 'routes')
+
+        // 2.将routes添加到router.main中
+        for (const route of routers) {
+            router.addRoute('main', route)
+        }
     }
 }
 

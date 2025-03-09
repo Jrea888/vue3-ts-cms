@@ -12,9 +12,11 @@ const app = createApp(App)
 
 // 注册第三方库
 app.use(globalRegister)
-app.use(router)
 app.use(store)
 
 setupStore()
+// 先匹配，回调路由导航时，就是那个时刻已经都匹配好了，所以在执行to时就notFound
+// path: /user => user
+app.use(router)
 
 app.mount('#app')

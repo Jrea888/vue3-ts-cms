@@ -34,8 +34,8 @@ class ServiceLogin {
         return result.data
     }
 
-    public async userMenusByRoleId(roleId: number): Promise<UserMenusInfo> {
-        const result = await serviceRequest.get<IDataType<UserMenusInfo>>({
+    public async userMenusByRoleId(roleId: number): Promise<Array<UserMenusInfo>> {
+        const result = await serviceRequest.get<IDataType<Array<UserMenusInfo>>>({
             url: `${LoginAPI.USERMENUS}/${roleId}/menu`
         })
         return result.data
