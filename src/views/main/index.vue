@@ -9,7 +9,9 @@
                     <TopHeader @expandChange="expandChangeHandle" />
                 </el-header>
                 <el-main class="page-content">
-                    <router-view></router-view>
+                    <div class="page-info">
+                        <router-view></router-view>
+                    </div>
                 </el-main>
             </el-container>
         </el-container>
@@ -68,6 +70,11 @@ export default defineComponent({
 
     .page-content {
         height: calc(100% - 52px);
+
+        .page-info {
+            border-radius: 5px;
+            background-color: #fff;
+        }
     }
 
     .el-main {

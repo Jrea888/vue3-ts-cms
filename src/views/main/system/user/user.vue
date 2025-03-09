@@ -1,16 +1,30 @@
 <template>
     <div class="user">
-        <h2>user</h2>
+        <PageSearch :searchFormConfig="searchFormConfig" @search="searchHandle" @reset="resetHandle" />
     </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue'
+import PageSearch from '@/components/page-search'
+import {searchFormConfig} from './config/search.config'
 
 export default defineComponent({
     name: 'user',
+    components: {PageSearch},
     setup() {
-        return {}
+        const searchHandle = () => {
+            console.log('查询')
+        }
+
+        const resetHandle = () => {
+            console.log('重置')
+        }
+        return {
+            searchFormConfig,
+            searchHandle,
+            resetHandle
+        }
     }
 })
 </script>
