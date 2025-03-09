@@ -52,7 +52,6 @@ const mutations: MutationTree<LoginState> = {
         console.log('注册动态路由~')
         // 1.将userMenus映射到routes中
         const routers = mapMenusToRoutes(userMenus)
-        console.log(routers, 'routes')
 
         // 2.将routes添加到router.main中
         for (const route of routers) {

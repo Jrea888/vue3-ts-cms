@@ -1,3 +1,8 @@
+import {UsersListInfo} from '@/model'
+
 export interface SystemState {
-    count: number
+    usersList: Array<UsersListInfo>
+    usersCount: number
+    roleList: Array<any>
+    roleCount: number
 }

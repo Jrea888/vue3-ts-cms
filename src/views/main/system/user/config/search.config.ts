@@ -1,6 +1,6 @@
 import {IForm} from '@/base-ui/dynamic-form/types'
 
-export const searchFormConfig: IForm = {
+export const SearchFormConfig: IForm = {
     labelWidth: '120px',
     colLayout: {
         span: 8
