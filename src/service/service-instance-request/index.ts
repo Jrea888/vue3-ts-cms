@@ -1,5 +1,4 @@
 import {AxiosResponse} from 'axios'
-import localCache from '@/utils/cache'
 import ServiceRequest from '../service-base-request'
 import {BASE_URL, TIME_OUT} from '../service-base-request/config'
 
