@@ -1,9 +1,9 @@
 import {serviceRequest} from '../service-instance-request'
-import {IDataType, ResponseUsersData} from '@/model'
+import {IDataType, ResponseTableListData} from '@/model'
 
 class SystemService {
-    public async getPageListData(url: string, queryInfo: any): Promise<ResponseUsersData> {
-        const result = await serviceRequest.post<IDataType<ResponseUsersData>>({
+    public async getPageListData<T>(url: string, queryInfo: any): Promise<ResponseTableListData<T>> {
+        const result = await serviceRequest.post<IDataType<ResponseTableListData<T>>>({
             url,
             data: queryInfo
         })

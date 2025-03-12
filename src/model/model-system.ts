@@ -10,7 +10,26 @@ export interface UsersListInfo {
     updateAt: string
 }
 
-export interface ResponseUsersData {
+export interface MenuListInfo {
+    icon: string
+    id: number
+    name: string
+    sort: number | null
+    type: number
+    url: string | null
+    children: Array<MenuListInfo>
+}
+export interface RoleListInfo {
+    id: number
+    name: string
+    createAt: string
+    updateAt: string
+
+    intro: string
+    menuList: Array<MenuListInfo>
+}
+
+export interface ResponseTableListData<T> {
     totalCount: number
-    list: Array<UsersListInfo>
+    list: Array<T>
 }

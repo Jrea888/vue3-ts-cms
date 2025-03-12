@@ -10,6 +10,12 @@
                 <el-tag v-if="scope.row.enable === 0" type="danger">禁用</el-tag>
                 <el-tag v-if="scope.row.enable === 1" type="success">启用</el-tag>
             </template>
+            <template #createAt="scope">
+                <span>{{ $filters.formatTime(scope.row.createAt) }}</span>
+            </template>
+            <template #updateAt="scope">
+                <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
+            </template>
 
             <!-- 操作列 -->
             <template #handler="scope">
@@ -40,19 +46,24 @@ export default defineComponent({
     components: {DataTable},
     setup(props) {
         const store = useStore()
-        store.dispatch('system/getPageListAction', {
-            pageName: props.pageName,
-            queryInfo: {
-                offset: 0,
-                size: 10
-            }
-        })
 
-        // 获取数据
+        const getPageTableData = (queryInfo: Record<string, string> = {}) => {
+            store.dispatch('system/getPageListAction', {
+                pageName: props.pageName,
+                queryInfo: {
+                    offset: 0,
+                    size: 10,
+                    ...queryInfo
+                }
+            })
+        }
+
+        // 1.发送网络请求获取数据
+        getPageTableData()
+
+        // 2.获取页面的表格数据 和 分页大小总数
         const dataList = computed(() => store.getters[`system/pageListData`](props.pageName))
         const dataCount = computed(() => store.getters[`system/pageListCount`](props.pageName))
-
-        console.log(dataCount)
 
         const pageInfo = ref({
             currentPage: 1,
@@ -77,7 +88,8 @@ export default defineComponent({
             pageInfo,
             editUserHandle,
             deleteUserHandle,
-            createUserHandle
+            createUserHandle,
+            getPageTableData
         }
     }
 })

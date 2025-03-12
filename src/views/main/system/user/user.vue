@@ -1,8 +1,7 @@
 <template>
-    <div class="user">
+    <div class="user-page">
         <PageSearch :searchFormConfig="SearchFormConfig" @search="searchHandle" @reset="resetHandle" />
-
-        <PageContent :columnConfig="ColumnConfig" pageName="users" />
+        <PageContent ref="pageContentRef" :columnConfig="ColumnConfig" pageName="users" />
     </div>
 </template>
 
@@ -10,6 +9,7 @@
 import {defineComponent} from 'vue'
 import PageSearch from '@/components/page-search'
 import PageContent from '@/components/page-content'
+import {useUserPageSearch} from '@/hooks/user-page-search'
 import {SearchFormConfig} from './config/search.config'
 import {ColumnConfig} from './config/column.config'
 
@@ -17,14 +17,10 @@ export default defineComponent({
     name: 'user',
     components: {PageSearch, PageContent},
     setup() {
-        const searchHandle = () => {
-            console.log('查询')
-        }
+        const [pageContentRef, searchHandle, resetHandle] = useUserPageSearch()
 
-        const resetHandle = () => {
-            console.log('重置')
-        }
         return {
+            pageContentRef,
             ColumnConfig,
             SearchFormConfig,
             searchHandle,
@@ -34,4 +30,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.user-page {
+}
+</style>

@@ -20,7 +20,7 @@
             ></el-table-column>
 
             <!-- 循环遍历其他列 -->
-            <template v-for="propItem in propList" :key="propItem.prop">
+            <template v-for="propItem in propList" :key="propItem.prop" show-overflow-tooltip>
                 <el-table-column v-bind="propItem" align="center">
                     <template #default="scope">
                         <!-- 作用域插槽 -->
@@ -33,6 +33,11 @@
                 </el-table-column>
             </template>
         </el-table>
+
+        <!-- 分页 -->
+        <div class="footer" v-if="showFooter">
+            <slot name="footer"></slot>
+        </div>
     </div>
 </template>
 
